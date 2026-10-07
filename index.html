@@ -34,6 +34,11 @@
       <a href="#catalog">Каталог</a>
       <a href="#about">О бренде</a>
     </nav>
+
+    <button class="cart-button" id="open-cart" type="button">
+      Корзина
+      <span id="cart-count">0</span>
+    </button>
   </header>
 
   <main id="main">
@@ -141,5 +146,43 @@
       Вернуться к украшениям ->
     </a>
   </footer>
+  
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-header">
+      <div>
+        <p class="eyebrow">выбрано тобой</p>
+        <h2 id="cart-title">Твоя корзина</h2>
+      </div>
+
+      <button
+        class="close-button"
+        id="close-cart"
+        type="button"
+        aria-label="Закрыть корзину"
+      >
+        ×
+      </button>
+    </div>
+
+    <p class="empty-cart" id="empty-cart">
+      Здесь пока тихо.<br>
+      Добавь украшение, которое откликается тебе.
+    </p>
+
+    <ul class="cart-items" id="cart-items"></ul>
+
+    <div class="cart-summary" id="cart-summary" hidden>
+      <div class="cart-total-row">
+        <span>Итого</span>
+        <strong id="cart-total">0 ₽</strong>
+      </div>
+
+      <p class="cart-note">Учебный магазин. Оплата не взимается.</p>
+    </div>
+
+    <p class="cart-note" id="storage-message" role="status" hidden></p>
+  </dialog>
+
+  <p class="notification" id="notification" role="status"></p>
 </body>
 </html>

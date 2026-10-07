@@ -619,3 +619,282 @@ em {
     transform: none;
   }
 }
+
+/* Корзина */
+
+[hidden] {
+  display: none !important;
+}
+
+body.cart-open {
+  overflow: hidden;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cart-button span {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.cart-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: 540px;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 32px;
+  border: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  overflow-y: auto;
+}
+
+.cart-dialog::backdrop {
+  background-color: rgb(33 27 22 / 45%);
+  backdrop-filter: blur(3px);
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-header h2 {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.close-button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.empty-cart {
+  padding: 40px 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.cart-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 85px minmax(0, 1fr);
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+}
+
+.cart-item-info h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cart-item-price {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+}
+
+.quantity-controls button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quantity-controls span {
+  min-width: 28px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.quantity-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.remove-button {
+  min-height: 40px;
+  padding: 6px 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+  font-size: 22px;
+}
+
+.cart-total-row strong {
+  font-weight: 500;
+}
+
+.cart-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.cart-button:focus-visible,
+.cart-dialog button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Сообщение о добавлении товара */
+
+.notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 5;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 14px 22px;
+  background-color: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+
+.notification.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Шапка и корзина на телефоне */
+
+@media (max-width: 600px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header .navigation {
+    order: 3;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cart-button {
+    margin-left: auto;
+    font-size: 12px;
+  }
+
+  .cart-dialog {
+    padding: 24px 20px;
+  }
+
+  .cart-header h2 {
+    font-size: 27px;
+  }
+
+  .cart-item {
+    grid-template-columns: 65px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .cart-item img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .cart-item-info h3 {
+    font-size: 14px;
+  }
+
+  .cart-item-price {
+    font-size: 11px;
+  }
+
+  .notification {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification {
+    transition: none;
+  }
+}
