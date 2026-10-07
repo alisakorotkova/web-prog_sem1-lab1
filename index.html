@@ -178,6 +178,107 @@
       </div>
 
       <p class="cart-note">Учебный магазин. Оплата не взимается.</p>
+
+      <button class="primary-button" id="checkout-button" type="button">
+        Оформить заказ
+      </button>
+    </div>
+
+    <section
+      class="checkout-section"
+      id="checkout-section"
+      aria-labelledby="checkout-title"
+      hidden
+    >
+      <h3 id="checkout-title">Оформление заказа</h3>
+
+      <p class="cart-note">
+        Все поля обязательны. Для проверки используй вымышленные данные.
+      </p>
+
+      <form id="checkout-form">
+        <div class="form-row">
+          <label for="first-name">
+            Имя
+            <input
+              id="first-name"
+              name="firstName"
+              type="text"
+              autocomplete="given-name"
+              maxlength="60"
+              pattern=".*\S.*"
+              title="Введите имя, а не только пробелы"
+              required
+            >
+          </label>
+
+          <label for="last-name">
+            Фамилия
+            <input
+              id="last-name"
+              name="lastName"
+              type="text"
+              autocomplete="family-name"
+              maxlength="60"
+              pattern=".*\S.*"
+              title="Введите фамилию, а не только пробелы"
+              required
+            >
+          </label>
+        </div>
+
+        <label for="address">
+          Адрес доставки
+          <input
+            id="address"
+            name="address"
+            type="text"
+            autocomplete="street-address"
+            placeholder="Город, улица, дом, квартира"
+            maxlength="250"
+            pattern=".*\S.*"
+            title="Введите адрес, а не только пробелы"
+            required
+          >
+        </label>
+
+        <label for="phone">
+          Контактный телефон
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="+7 (999) 123-45-67"
+            maxlength="25"
+            aria-describedby="phone-hint"
+            required
+          >
+        </label>
+
+        <p class="field-hint" id="phone-hint">
+          От 10 до 15 цифр. Можно использовать +, пробелы, скобки и дефисы.
+        </p>
+
+        <button class="primary-button" type="submit">
+          Создать заказ
+        </button>
+      </form>
+    </section>
+
+    <div
+      class="order-success"
+      id="order-success"
+      role="status"
+      tabindex="-1"
+      hidden
+    >
+      <h3>Заказ создан!</h3>
+
+      <p>
+        Спасибо, что выбрали rassvet detail.
+        Это учебный заказ — данные никуда не отправлены.
+      </p>
     </div>
 
     <p class="cart-note" id="storage-message" role="status" hidden></p>

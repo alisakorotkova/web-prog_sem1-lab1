@@ -16,6 +16,14 @@ const emptyCart = document.querySelector('#empty-cart');
 const storageMessage = document.querySelector('#storage-message');
 const notification = document.querySelector('#notification');
 
+// Элементы оформления заказа.
+const checkoutButton = document.querySelector('#checkout-button');
+const checkoutSection = document.querySelector('#checkout-section');
+const checkoutForm = document.querySelector('#checkout-form');
+const firstNameInput = document.querySelector('#first-name');
+const phoneInput = document.querySelector('#phone');
+const orderSuccess = document.querySelector('#order-success');
+
 const storageKey = 'rassvet-cart';
 
 let cart = [];
@@ -151,6 +159,8 @@ function updateCart() {
 // Действия с товарами
 
 function addToCart(productId) {
+    orderSuccess.hidden = true;
+
   const item = cart.find(function (item) {
     return item.id === productId;
   });
@@ -317,8 +327,12 @@ function renderCart() {
   cartCount.textContent = count;
   cartTotal.textContent = formatPrice(total);
 
-  emptyCart.hidden = cart.length > 0;
+  emptyCart.hidden = cart.length > 0 || !orderSuccess.hidden;
   cartSummary.hidden = cart.length === 0;
+
+  if (cart.length === 0) {
+    checkoutSection.hidden = true;
+  }
 }
 
 // Сообщения и открытие панели
@@ -346,6 +360,62 @@ closeCartButton.addEventListener('click', function () {
 // Срабатывает и при нажатии крестика, и при закрытии по Escape
 cartDialog.addEventListener('close', function () {
   document.body.classList.remove('cart-open');
+});
+
+
+// Оформление заказа
+
+checkoutButton.addEventListener('click', function () {
+  if (cart.length === 0) {
+    return;
+  }
+
+  checkoutSection.hidden = false;
+  firstNameInput.focus();
+});
+
+// Проверяем допустимые символы и количество цифр в телефоне
+function validatePhone() {
+  const phone = phoneInput.value.trim();
+  const digits = phone.replace(/\D/g, '');
+
+  const allowedCharacters = /^[+\d\s()-]+$/.test(phone);
+  const validLength = digits.length >= 10 && digits.length <= 15;
+
+  if (phone === '' || (allowedCharacters && validLength)) {
+    phoneInput.setCustomValidity('');
+  } else {
+    phoneInput.setCustomValidity(
+      'Введите телефон: от 10 до 15 цифр. Допустимы +, пробелы, скобки и дефисы.'
+    );
+  }
+}
+
+phoneInput.addEventListener('input', validatePhone);
+
+checkoutForm.addEventListener('submit', function (event) {
+  // Останавливаем обычную отправку формы и перезагрузку страницы.
+  event.preventDefault();
+
+  validatePhone();
+
+  if (!checkoutForm.reportValidity() || cart.length === 0) {
+    return;
+  }
+
+  // Очищаем корзину и введенные данные.
+  cart = [];
+  checkoutForm.reset();
+  phoneInput.setCustomValidity('');
+
+  checkoutSection.hidden = true;
+  orderSuccess.hidden = false;
+
+  // Сохраняем пустую корзину и обновляем интерфейс
+  updateCart();
+
+  // Перемещаем фокус к сообщению об успешном заказе
+  orderSuccess.focus();
 });
 
 // Запуск страницы
