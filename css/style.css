@@ -1011,3 +1011,151 @@ body.cart-open {
     font-size: 27px;
   }
 }
+
+/* Фотокомпозиция о бренде */
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  align-items: center;
+  gap: 22px;
+  margin-top: 55px;
+}
+
+.story-grid figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.story-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.story-side figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.story-main {
+  position: relative;
+}
+
+.story-main img {
+  aspect-ratio: 2 / 3;
+}
+
+/* Затемнение нижней части фотографии для читаемости цитат. */
+
+.story-main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 35%,
+    rgb(0 0 0 / 12%) 55%,
+    rgb(0 0 0 / 48%) 100%
+  );
+  pointer-events: none;
+}
+
+.story-main figcaption {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 28px;
+  padding: 7%;
+  color: #f0d899;
+  font-size: clamp(16px, 1.6vw, 27px);
+  font-style: italic;
+  line-height: 1.5;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 50%);
+}
+
+.story-quote {
+  display: block;
+}
+
+.story-quote-first {
+  text-align: left;
+}
+
+.story-quote-second {
+  text-align: right;
+}
+
+.about-ending {
+  margin-top: 55px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.about-ending span {
+  margin: 0 10px;
+  color: var(--gold);
+}
+
+/* На планшете центральное фото располагается над двумя боковыми. */
+
+@media (max-width: 1000px) {
+  .story-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 680px;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 24px 20px;
+  }
+
+  .story-main {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .story-main img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .story-main figcaption {
+    gap: 30px;
+    font-size: 26px;
+  }
+}
+
+/* Телефон */
+
+@media (max-width: 600px) {
+  .story-grid {
+    gap: 22px 14px;
+    margin-top: 35px;
+  }
+
+  .story-main figcaption {
+    gap: 20px;
+    padding: 6%;
+    font-size: clamp(16px, 4.2vw, 24px);
+  }
+
+  .story-side figcaption {
+    font-size: 11px;
+  }
+
+  .about-ending {
+    margin-top: 35px;
+    font-size: 25px;
+  }
+
+  .about-ending span {
+    margin: 0 4px;
+  }
+}
