@@ -1,0 +1,471 @@
+/* Локальные шрифты */
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/manrope.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gill Sans";
+  src: url("../fonts/gill-sans-light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Основные цвета проекта */
+
+:root {
+  --paper: #f6f4ed;
+  --ink: #49392f;
+  --gold: #9b7e3e;
+  --line: #d7d0c1;
+  --muted: #776c60;
+}
+
+/* Общие настройки */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
+
+em {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Ссылка для перехода к основному содержимому */
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 10;
+  padding: 12px 18px;
+  background-color: var(--paper);
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Шапка */
+
+.header {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 4.5%;
+}
+
+.wordmark {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1.3px;
+}
+
+.wordmark-caption {
+  display: block;
+  margin-top: 9px;
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 2.7px;
+  text-align: center;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 14px;
+}
+
+.navigation a {
+  padding: 10px 0;
+}
+
+.navigation a:hover,
+.footer-link:hover {
+  color: var(--gold);
+}
+
+/* Первый экран */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  height: calc(100svh - 96px);
+  min-height: 610px;
+  max-height: 920px;
+  color: #fffaf2;
+}
+
+.hero-images {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hero-images img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Лёгкое затемнение помогает читать текст поверх фотографий. */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    0deg,
+    rgb(33 27 22 / 35%),
+    rgb(33 27 22 / 14%) 60%
+  );
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-top: 25px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: clamp(80px, 12.4vw, 200px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -5px;
+}
+
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: clamp(13px, 2.2vw, 20px);
+  font-weight: 300;
+}
+
+.hero-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 310px;
+  max-width: 100%;
+  margin-top: 45px;
+  padding: 17px 24px;
+  border: 1px solid #ece0b5;
+  border-radius: 40px;
+  background-color: rgb(255 255 255 / 5%);
+  backdrop-filter: blur(6px);
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.hero-link:hover {
+  background-color: rgb(255 255 255 / 18%);
+}
+
+.hero-link span {
+  font-size: 28px;
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 28px;
+  left: 4.5%;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.hero-number {
+  position: absolute;
+  right: 4.5%;
+  bottom: 28px;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+/* Вступления к каталогу и блоку о бренде */
+
+.section {
+  padding: 90px 4.5%;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.section h2 {
+  margin-top: 17px;
+  font-size: clamp(36px, 3.8vw, 58px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -1.7px;
+}
+
+.section-heading h2 em {
+  display: block;
+}
+
+.section-description {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.about {
+  background-color: #eeece4;
+}
+
+.about-intro {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-description {
+  max-width: 550px;
+  margin: 23px auto 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* Подвал */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 4.5%;
+  border-top: 1px solid var(--line);
+}
+
+.footer p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.footer-link {
+  font-size: 12px;
+}
+
+/* Планшет */
+
+@media (max-width: 1000px) {
+  .hero {
+    min-height: 530px;
+    max-height: 800px;
+  }
+
+  .section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .section h2 {
+    font-size: 42px;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+  }
+}
+
+/* Телефон */
+
+@media (max-width: 600px) {
+  .header {
+    min-height: 80px;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .wordmark {
+    font-size: 27px;
+  }
+
+  .wordmark-caption {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .navigation {
+    gap: 14px;
+    font-size: 12px;
+  }
+
+  .hero {
+    height: calc(85svh - 80px);
+    min-height: 490px;
+    max-height: 700px;
+  }
+
+  .hero-images {
+    grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  }
+
+  .hero-images img:first-child {
+    object-position: 48% center;
+  }
+
+  .hero-images img:last-child {
+    object-position: 52% center;
+  }
+
+  .hero-content {
+    padding: 20px;
+  }
+
+  .hero-content .eyebrow {
+    max-width: 280px;
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 1.2px;
+  }
+
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(48px, 14.5vw, 85px);
+    letter-spacing: -2px;
+  }
+
+  .hero-subtitle {
+    max-width: 300px;
+    font-size: 17px;
+  }
+
+  .hero-link {
+    width: 250px;
+    margin-top: 35px;
+    padding: 13px 20px;
+    font-size: 16px;
+  }
+
+  .hero-bottom {
+    bottom: 20px;
+    left: 20px;
+    max-width: 55%;
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .hero-number {
+    right: 20px;
+    bottom: 20px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .section {
+    padding: 55px 20px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .section h2 {
+    font-size: 35px;
+    letter-spacing: -1px;
+  }
+
+  .section-description {
+    font-size: 15px;
+  }
+
+  .about-description {
+    font-size: 16px;
+  }
+
+  .footer {
+    padding: 35px 20px;
+    gap: 24px;
+  }
+
+  .footer-link {
+    width: 100%;
+  }
+}
+
+/* Отключаем плавные эффекты при соответствующей настройке устройства. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-link {
+    transition: none;
+  }
+}
